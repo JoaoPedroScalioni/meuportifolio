@@ -2,17 +2,8 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-// Usando ícones que têm 100% de estabilidade no build do Next 16/Turbopack
-import {
-  Globe,
-  Code,
-  TrendingUp,
-  ExternalLink,
-  MessageCircle,
-  X
-} from "lucide-react";
+import { Globe, Code, TrendingUp, ExternalLink, MessageCircle, X } from "lucide-react";
 
-// Definição dos dados diretamente no arquivo para garantir consistência
 const projects = [
   {
     id: 1,
@@ -20,8 +11,7 @@ const projects = [
     desc: "Landing page médica focada em conversão e autoridade.",
     link: "https://www.drfilipevaneli.site/",
     tag: "Web Dev",
-    // Imagem placeholder relacionada a medicina/tecnologia
-    img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800"
+    img: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=800"
   },
   {
     id: 2,
@@ -29,7 +19,6 @@ const projects = [
     desc: "Sistema de gestão de reputação digital e análise de dados.",
     link: "https://elevva-reputation.vercel.app/",
     tag: "Software",
-    // Imagem placeholder relacionada a dados/analytics
     img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800"
   },
   {
@@ -38,7 +27,6 @@ const projects = [
     desc: "Site institucional para serviços e propostas estratégicas.",
     link: "https://site-elevva-mkt-propaganda.vercel.app/",
     tag: "Design",
-    // Imagem placeholder relacionada a agência/criatividade
     img: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=800"
   },
   {
@@ -46,9 +34,9 @@ const projects = [
     title: "Nova Construtiza",
     desc: "Estratégia de performance e tráfego pago regional.",
     tag: "Marketing",
-    // Imagem placeholder relacionada a gráficos/crescimento (FOI RECOLOCADA AQUI)
-    img: "https://images.unsplash.com/photo-1551288049-bbbda536339a?q=80&w=800",
-    isStrategy: true // Define que este projeto abre o modal
+    // Link de imagem novo e direto
+    img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800",
+    isStrategy: true
   }
 ];
 
@@ -58,12 +46,10 @@ export default function Portfolio() {
   return (
     <main className="min-h-screen bg-[#050505] text-white font-sans selection:bg-white/20">
 
-      {/* Luz de fundo sutil */}
       <div className="fixed inset-0 -z-10 overflow-hidden">
         <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-blue-900/10 blur-[120px] rounded-full" />
       </div>
 
-      {/* Header Centralizado */}
       <header className="max-w-4xl mx-auto pt-24 pb-16 text-center px-6">
         <motion.h1
           initial={{ opacity: 0, y: 10 }}
@@ -77,7 +63,6 @@ export default function Portfolio() {
         </p>
       </header>
 
-      {/* Grid de Projetos - 3 Colunas Desktop */}
       <section className="max-w-6xl mx-auto px-6 pb-32">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((p) => (
@@ -86,20 +71,22 @@ export default function Portfolio() {
               whileHover={{ y: -8 }}
               className="bg-[#0A0A0A] border border-white/5 rounded-3xl overflow-hidden group hover:border-white/20 transition-all duration-500 flex flex-col h-full"
             >
-              {/* Seção da Imagem - Igual para todos os projetos */}
-              <div className="aspect-[16/10] overflow-hidden bg-zinc-800">
-                <img src={p.img} alt={p.title} className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" />
+              {/* Espaço da Imagem - Forçado a aparecer */}
+              <div className="aspect-[16/10] overflow-hidden bg-zinc-900 relative">
+                <img
+                  src={p.img}
+                  alt={p.title}
+                  className="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                />
               </div>
 
-              {/* Conteúdo do Card */}
               <div className="p-8 text-center flex flex-col flex-grow justify-between items-center">
                 <div>
                   <span className="text-[10px] uppercase tracking-widest text-zinc-500 font-bold mb-2 block">{p.tag}</span>
                   <h3 className="text-2xl font-bold mb-4">{p.title}</h3>
-                  <p className="text-zinc-400 text-sm mb-8 leading-relaxed max-w-sm">{p.desc}</p>
+                  <p className="text-zinc-400 text-sm mb-8 leading-relaxed">{p.desc}</p>
                 </div>
 
-                {/* Lógica do Botão (Leva para site ou abre modal) */}
                 {p.isStrategy ? (
                   <button
                     onClick={() => setModalData(p)}
@@ -121,7 +108,6 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Modal Saiba Mais (Ativado para projetos isStrategy) */}
       <AnimatePresence>
         {modalData && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/90 backdrop-blur-sm">
@@ -138,10 +124,9 @@ export default function Portfolio() {
               <h2 className="text-3xl font-bold mb-4">{modalData.title}</h2>
               <p className="text-zinc-400 leading-relaxed mb-8">
                 Atuação estratégica focada no setor de materiais de construção em Varginha.
-                Desenvolvi campanhas de tráfego pago e posicionamento regional para competir com grandes marketplaces,
-                integrando a comunicação de estoque com foco direto em conversão e vendas locais.
+                Integrei campanhas de tráfego pago com inteligência regional para competir com gigantes do setor.
               </p>
-              <a href="https://wa.me/5535997350506" target="_blank" rel="noopener noreferrer" className="inline-block w-full text-center py-4 bg-white text-black rounded-full font-bold hover:bg-zinc-200">
+              <a href="https://wa.me/5535997350506" target="_blank" rel="noopener noreferrer" className="inline-block w-full text-center py-4 bg-white text-black rounded-full font-bold">
                 Falar sobre Estratégia
               </a>
             </motion.div>
@@ -149,7 +134,6 @@ export default function Portfolio() {
         )}
       </AnimatePresence>
 
-      {/* Footer Perfeito */}
       <footer className="max-w-6xl mx-auto border-t border-white/5 px-6 py-12 flex flex-col md:flex-row justify-between items-center gap-6">
         <div className="text-center md:text-left">
           <p className="text-sm font-bold text-zinc-400 uppercase tracking-widest">© 2026 João Pedro Scalioni — Elevva Marketing</p>
