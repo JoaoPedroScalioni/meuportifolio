@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-// Usando ícones que têm 100% de estabilidade no build do Next 16
+// Usando ícones que têm 100% de estabilidade no build do Next 16/Turbopack
 import {
   Globe,
   Code,
@@ -12,6 +12,7 @@ import {
   X
 } from "lucide-react";
 
+// Definição dos dados diretamente no arquivo para garantir consistência
 const projects = [
   {
     id: 1,
@@ -19,6 +20,7 @@ const projects = [
     desc: "Landing page médica focada em conversão e autoridade.",
     link: "https://www.drfilipevaneli.site/",
     tag: "Web Dev",
+    // Imagem placeholder relacionada a medicina/tecnologia
     img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800"
   },
   {
@@ -27,14 +29,16 @@ const projects = [
     desc: "Sistema de gestão de reputação digital e análise de dados.",
     link: "https://elevva-reputation.vercel.app/",
     tag: "Software",
+    // Imagem placeholder relacionada a dados/analytics
     img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800"
   },
   {
     id: 3,
-    title: "Elevva Propaganda",
+    title: "Elevva Marketing",
     desc: "Site institucional para serviços e propostas estratégicas.",
     link: "https://site-elevva-mkt-propaganda.vercel.app/",
     tag: "Design",
+    // Imagem placeholder relacionada a agência/criatividade
     img: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=800"
   },
   {
@@ -42,8 +46,9 @@ const projects = [
     title: "Nova Construtiza",
     desc: "Estratégia de performance e tráfego pago regional.",
     tag: "Marketing",
+    // Imagem placeholder relacionada a gráficos/crescimento (FOI RECOLOCADA AQUI)
     img: "https://images.unsplash.com/photo-1551288049-bbbda536339a?q=80&w=800",
-    isStrategy: true
+    isStrategy: true // Define que este projeto abre o modal
   }
 ];
 
@@ -79,17 +84,22 @@ export default function Portfolio() {
             <motion.div
               key={p.id}
               whileHover={{ y: -8 }}
-              className="bg-[#0A0A0A] border border-white/5 rounded-3xl overflow-hidden group hover:border-white/20 transition-all duration-500"
+              className="bg-[#0A0A0A] border border-white/5 rounded-3xl overflow-hidden group hover:border-white/20 transition-all duration-500 flex flex-col h-full"
             >
+              {/* Seção da Imagem - Igual para todos os projetos */}
               <div className="aspect-[16/10] overflow-hidden bg-zinc-800">
                 <img src={p.img} alt={p.title} className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" />
               </div>
 
-              <div className="p-8 text-center">
-                <span className="text-[10px] uppercase tracking-widest text-zinc-500 font-bold mb-2 block">{p.tag}</span>
-                <h3 className="text-2xl font-bold mb-4">{p.title}</h3>
-                <p className="text-zinc-400 text-sm mb-8 leading-relaxed">{p.desc}</p>
+              {/* Conteúdo do Card */}
+              <div className="p-8 text-center flex flex-col flex-grow justify-between items-center">
+                <div>
+                  <span className="text-[10px] uppercase tracking-widest text-zinc-500 font-bold mb-2 block">{p.tag}</span>
+                  <h3 className="text-2xl font-bold mb-4">{p.title}</h3>
+                  <p className="text-zinc-400 text-sm mb-8 leading-relaxed max-w-sm">{p.desc}</p>
+                </div>
 
+                {/* Lógica do Botão (Leva para site ou abre modal) */}
                 {p.isStrategy ? (
                   <button
                     onClick={() => setModalData(p)}
@@ -99,7 +109,7 @@ export default function Portfolio() {
                   </button>
                 ) : (
                   <a
-                    href={p.link} target="_blank"
+                    href={p.link} target="_blank" rel="noopener noreferrer"
                     className="flex items-center justify-center gap-2 w-full py-4 bg-zinc-900 border border-white/10 text-white rounded-full font-bold text-sm hover:bg-white hover:text-black transition-all"
                   >
                     Ver Site <ExternalLink size={16} />
@@ -111,7 +121,7 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Modal Saiba Mais */}
+      {/* Modal Saiba Mais (Ativado para projetos isStrategy) */}
       <AnimatePresence>
         {modalData && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/90 backdrop-blur-sm">
@@ -131,7 +141,7 @@ export default function Portfolio() {
                 Desenvolvi campanhas de tráfego pago e posicionamento regional para competir com grandes marketplaces,
                 integrando a comunicação de estoque com foco direto em conversão e vendas locais.
               </p>
-              <a href="https://wa.me/5535997350506" className="inline-block w-full text-center py-4 bg-white text-black rounded-full font-bold">
+              <a href="https://wa.me/5535997350506" target="_blank" rel="noopener noreferrer" className="inline-block w-full text-center py-4 bg-white text-black rounded-full font-bold hover:bg-zinc-200">
                 Falar sobre Estratégia
               </a>
             </motion.div>
@@ -146,9 +156,9 @@ export default function Portfolio() {
           <p className="text-xs text-zinc-600 mt-1">Varginha, MG — Performance & Estratégia</p>
         </div>
         <div className="flex gap-6">
-          <a href="https://github.com/JoaoPedroScalioni" target="_blank" className="text-zinc-500 hover:text-white transition-colors"><Code size={20} /></a>
-          <a href="https://www.linkedin.com/in/jo%C3%A3o-pedro-scalioni-de-souza-65b1212a6/" target="_blank" className="text-zinc-500 hover:text-white transition-colors"><Globe size={20} /></a>
-          <a href="https://wa.me/5535997350506" target="_blank" className="text-zinc-500 hover:text-white transition-colors"><MessageCircle size={20} /></a>
+          <a href="https://github.com/JoaoPedroScalioni" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-white transition-colors"><Code size={20} /></a>
+          <a href="https://www.linkedin.com/in/jo%C3%A3o-pedro-scalioni-de-souza-65b1212a6/" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-white transition-colors"><Globe size={20} /></a>
+          <a href="https://wa.me/5535997350506" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-white transition-colors"><MessageCircle size={20} /></a>
         </div>
       </footer>
     </main>
