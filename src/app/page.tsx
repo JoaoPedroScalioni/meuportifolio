@@ -7,7 +7,6 @@ import ProjectCard from "@/components/ProjectCard";
 import ProjectModal from "@/components/ProjectModal";
 // Corrigido: Importando com o nome padrão que o Lucide costuma aceitar
 import { BarChart3, Github, Linkedin, MessageCircle } from "lucide-react";
-
 export default function PortfolioPage() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
