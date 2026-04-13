@@ -5,9 +5,7 @@ import { motion } from "framer-motion";
 import { projects, Project } from "@/data/projects";
 import ProjectCard from "@/components/ProjectCard";
 import ProjectModal from "@/components/ProjectModal";
-import { BarChart3 } from "lucide-react";
-
-import { Github, Linkedin, MessageCircle } from "lucide-react";
+import { BarChart3, Github, Linkedin, MessageCircle } from "lucide-react";
 
 export default function PortfolioPage() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
