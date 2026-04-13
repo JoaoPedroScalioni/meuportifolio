@@ -3,6 +3,7 @@ export interface Project {
   category: string;
   title: string;
   description: string;
+  longDescription?: string;
   link?: string;
   image?: string;
   isStrategy?: boolean;
@@ -14,31 +15,35 @@ export const projects: Project[] = [
     category: "Web Dev",
     title: "Dr. Filipe Vaneli",
     description: "Landing page médica de alta performance desenvolvida para conversão e autoridade.",
+    longDescription: "Projeto focado em criar uma presença digital robusta para o Dr. Filipe Vaneli. A landing page utiliza gatilhos mentais de autoridade, design limpo e otimização de velocidade para garantir que cada visitante tenha uma jornada intuitiva até o agendamento.",
     link: "https://www.drfilipevaneli.site/",
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop" // modern hardware
+    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop"
   },
   {
     id: "elevva-reputation",
     category: "Web Dev",
     title: "Elevva Reputation",
     description: "Sistema de gestão de reputação digital focado em interface limpa e análise de dados.",
+    longDescription: "Uma plataforma SaaS complexa que permite empresas monitorarem e responderem avaliações em tempo real. O desafio foi traduzir dados densos em dashboards visuais claros e funcionais para o usuário final.",
     link: "https://elevva-reputation.vercel.app/",
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop" // coding setup
+    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop"
   },
   {
     id: "elevva-marketing-propaganda",
     category: "Web Dev",
     title: "Elevva Marketing",
     description: "Site institucional para apresentação de serviços e propostas comerciais estratégicas.",
+    longDescription: "Desenvolvimento do site oficial da Elevva Marketing, focado em transmitir modernidade e criatividade. A interface serve como central de propostas comerciais e demonstração do portfólio de serviços de alto nível da agência.",
     link: "https://site-elevva-mkt-propaganda.vercel.app/",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop" // minimalist tech
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop"
   },
   {
     id: "nova-construtiza",
     category: "Estratégia & Performance",
     title: "Nova Construtiza (Varginha)",
     description: "Estratégia de tráfego pago e posicionamento regional em marketing de performance.",
+    longDescription: "Trabalho estratégico profundo focado na Nova Construtiza em Varginha. Atuamos na criação de campanhas de performance (Google & Meta Ads) para enfrentar grandes marketplaces, focando no atendimento consultivo e na força da marca regional. Resultados focados em vendas diretas e lembrança de marca.",
     isStrategy: true,
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop" // business growth data
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop"
   }
 ];

@@ -1,19 +1,24 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ExternalLink, Zap } from "lucide-react";
+import { ExternalLink, Info } from "lucide-react";
 import { Project } from "@/data/projects";
 
-export default function ProjectCard({ project }: { project: Project }) {
+interface ProjectCardProps {
+  project: Project;
+  onSelect: (project: Project) => void;
+}
+
+export default function ProjectCard({ project, onSelect }: ProjectCardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8, ease: "easeOut" } as const}
-      className="group relative flex flex-col bg-white/[0.02] border border-white/[0.05] rounded-[2rem] overflow-hidden hover:bg-white/[0.04] hover:border-white/[0.1] transition-all duration-500 shadow-2xl"
+      className="group relative flex flex-col bg-white/[0.02] border border-white/[0.05] rounded-[2.5rem] overflow-hidden border-glow hover:bg-white/[0.04] transition-all duration-500 shadow-2xl text-center"
     >
-      {/* Image Container with Zoom Effect */}
+      {/* Image Container with Zoom */}
       <div className="relative w-full aspect-[16/10] overflow-hidden bg-black/40">
         <motion.img
           src={project.image}
@@ -23,40 +28,44 @@ export default function ProjectCard({ project }: { project: Project }) {
           className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500"
         />
         
-        {/* Overlay Badge */}
-        <div className="absolute top-6 left-6 z-20">
-          <span className="px-4 py-2 rounded-full border border-white/[0.08] bg-black/40 backdrop-blur-md text-[9px] font-bold uppercase tracking-[0.3em] text-white/50">
+        {/* Category Overlay */}
+        <div className="absolute top-6 inset-x-0 mx-auto w-fit z-20">
+          <span className="px-4 py-2 rounded-full border border-white/[0.08] bg-black/60 backdrop-blur-md text-[9px] font-bold uppercase tracking-[0.3em] text-white/40 group-hover:text-white/70 transition-colors">
             {project.category}
           </span>
         </div>
       </div>
 
-      {/* Content Area */}
-      <div className="p-8 md:p-10 flex flex-col justify-between flex-1 space-y-8">
+      {/* Content Area - Centralized */}
+      <div className="p-10 flex flex-col items-center justify-between flex-1 gap-8">
         <div className="space-y-4">
-          <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-white/90 leading-tight">
+          <h3 className="text-2xl font-bold tracking-tight text-white/90 leading-tight">
             {project.title}
           </h3>
-          <p className="text-sm md:text-base text-gray-500 font-light leading-relaxed group-hover:text-gray-400 transition-colors">
+          <p className="text-sm text-gray-500 font-light leading-relaxed group-hover:text-gray-400 transition-colors">
             {project.description}
           </p>
         </div>
 
-        <div className="pt-2">
+        <div className="w-full pt-2">
           {project.link ? (
             <a
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-between w-full px-8 py-4 rounded-full bg-white text-black font-extrabold text-[10px] uppercase tracking-widest hover:bg-gray-100 active:scale-[0.98] transition-all duration-300 shadow-xl"
+              className="flex items-center justify-center gap-2 w-full px-8 py-4 rounded-full bg-white text-black font-extrabold text-[10px] uppercase tracking-widest hover:bg-gray-100 active:scale-[0.98] transition-all duration-300 shadow-xl"
             >
               <span>Ver Site</span>
               <ExternalLink size={14} className="opacity-50" />
             </a>
           ) : (
-            <div className="flex items-center justify-center w-full px-8 py-4 rounded-full bg-white/[0.05] border border-white/[0.05] text-white/30 font-bold text-[10px] uppercase tracking-widest cursor-default">
-              <span>{project.isStrategy ? "Estratégia & Performance" : "Em Breve"}</span>
-            </div>
+            <button
+              onClick={() => onSelect(project)}
+              className="flex items-center justify-center gap-2 w-full px-8 py-4 rounded-full bg-white/[0.05] border border-white/[0.08] text-white/60 font-bold text-[10px] uppercase tracking-widest hover:bg-white/[0.1] hover:text-white transition-all duration-300 active:scale-[0.98]"
+            >
+              <span>Saiba Mais</span>
+              <Info size={14} className="opacity-50" />
+            </button>
           )}
         </div>
       </div>
