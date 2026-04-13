@@ -1,104 +1,156 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+// Usando ícones que têm 100% de estabilidade no build do Next 16
 import {
   Globe,
+  Code,
+  TrendingUp,
   ExternalLink,
-  Mail,
-  Layout,
-  Zap,
-  ArrowUpRight,
-  Code
+  MessageCircle,
+  X
 } from "lucide-react";
 
-// Como o seu GitHub e LinkedIn estão dando erro de exportação, 
-// vamos usar ícones genéricos de alta qualidade que NÃO falham no build.
-export default function PortfolioPage() {
+const projects = [
+  {
+    id: 1,
+    title: "Dr. Filipe Vaneli",
+    desc: "Landing page médica focada em conversão e autoridade.",
+    link: "https://www.drfilipevaneli.site/",
+    tag: "Web Dev",
+    img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800"
+  },
+  {
+    id: 2,
+    title: "Elevva Reputation",
+    desc: "Sistema de gestão de reputação digital e análise de dados.",
+    link: "https://elevva-reputation.vercel.app/",
+    tag: "Software",
+    img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800"
+  },
+  {
+    id: 3,
+    title: "Elevva Propaganda",
+    desc: "Site institucional para serviços e propostas estratégicas.",
+    link: "https://site-elevva-mkt-propaganda.vercel.app/",
+    tag: "Design",
+    img: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=800"
+  },
+  {
+    id: 4,
+    title: "Nova Construtiza",
+    desc: "Estratégia de performance e tráfego pago regional.",
+    tag: "Marketing",
+    img: "https://images.unsplash.com/photo-1551288049-bbbda536339a?q=80&w=800",
+    isStrategy: true
+  }
+];
+
+export default function Portfolio() {
+  const [modalData, setModalData] = useState<typeof projects[0] | null>(null);
+
   return (
-    <main className="min-h-screen bg-[#050505] text-white p-4 md:p-10 font-sans selection:bg-white/20">
+    <main className="min-h-screen bg-[#050505] text-white font-sans selection:bg-white/20">
 
-      {/* Bento Grid Container */}
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 md:grid-rows-4 gap-4">
-
-        {/* CARD 1: BIO (Grande) */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="md:col-span-2 md:row-span-2 bg-[#0A0A0A] border border-white/5 rounded-[2rem] p-8 flex flex-col justify-between hover:border-white/20 transition-colors"
-        >
-          <div>
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tighter mb-2">João Pedro</h1>
-            <p className="text-zinc-500 text-lg md:text-xl font-medium">Performance & Web Dev</p>
-          </div>
-
-          <div className="flex flex-wrap gap-3 mt-8">
-            <a href="https://wa.me/5535997350506" target="_blank" className="flex items-center gap-2 bg-white text-black px-5 py-2.5 rounded-full font-bold hover:scale-105 transition-transform">
-              <Zap size={18} /> Contato
-            </a>
-            <a href="https://github.com/JoaoPedroScalioni" target="_blank" className="p-3 bg-zinc-900 border border-white/10 rounded-full hover:bg-zinc-800 transition-colors">
-              <Code size={20} />
-            </a>
-            <a href="https://www.linkedin.com/in/jo%C3%A3o-pedro-scalioni-de-souza-65b1212a6/" target="_blank" className="p-3 bg-zinc-900 border border-white/10 rounded-full hover:bg-zinc-800 transition-colors">
-              <Globe size={20} />
-            </a>
-          </div>
-        </motion.div>
-
-        {/* CARD 2: PROJETO DESTAQUE (Dr. Filipe) */}
-        <motion.div
-          className="md:col-span-2 md:row-span-3 bg-zinc-900/40 border border-white/5 rounded-[2rem] overflow-hidden relative group"
-        >
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10" />
-          <div className="absolute top-6 right-6 z-20">
-            <div className="bg-white/10 backdrop-blur-md px-4 py-1 rounded-full text-[10px] uppercase tracking-widest border border-white/10">Destaque</div>
-          </div>
-          <div className="absolute bottom-8 left-8 z-20">
-            <h2 className="text-3xl font-bold mb-2">Dr. Filipe Vaneli</h2>
-            <p className="text-zinc-400 mb-4 max-w-xs">Landing Page médica focada em conversão e autoridade.</p>
-            <a href="https://www.drfilipevaneli.site/" target="_blank" className="inline-flex items-center gap-2 text-white font-semibold hover:underline">
-              Visitar Projeto <ArrowUpRight size={18} />
-            </a>
-          </div>
-          {/* Placeholder de imagem escura */}
-          <div className="w-full h-full bg-zinc-800/50 group-hover:scale-105 transition-transform duration-700" />
-        </motion.div>
-
-        {/* CARD 3: REPUTATION */}
-        <motion.div className="md:col-span-2 md:row-span-1 bg-[#0A0A0A] border border-white/5 rounded-[2rem] p-6 flex items-center justify-between group">
-          <div className="flex items-center gap-4">
-            <div className="p-3 bg-blue-500/10 rounded-2xl text-blue-500"><Layout size={24} /></div>
-            <div>
-              <h3 className="font-bold">Elevva Reputation</h3>
-              <p className="text-xs text-zinc-500">Gestão de dados e reputação.</p>
-            </div>
-          </div>
-          <a href="https://elevva-reputation.vercel.app/" target="_blank" className="p-2 opacity-0 group-hover:opacity-100 transition-opacity"><ExternalLink size={20} /></a>
-        </motion.div>
-
-        {/* CARD 4: NOVA CONSTRUTIZA (Marketing) */}
-        <motion.div className="md:col-span-1 md:row-span-2 bg-white text-black rounded-[2rem] p-8 flex flex-col justify-between">
-          <Zap size={32} className="fill-black" />
-          <div>
-            <h3 className="text-xl font-bold leading-tight mb-2">Nova Construtiza</h3>
-            <p className="text-sm font-medium opacity-70 italic">Performance de vendas em Varginha.</p>
-          </div>
-        </motion.div>
-
-        {/* CARD 5: ELEVVA PROPAGANDA */}
-        <motion.div className="md:col-span-1 md:row-span-2 bg-[#0A0A0A] border border-white/5 rounded-[2rem] p-8 flex flex-col justify-between">
-          <div className="text-zinc-500"><Mail size={32} /></div>
-          <h3 className="font-bold">Elevva Propaganda</h3>
-          <a href="https://site-elevva-mkt-propaganda.vercel.app/" target="_blank" className="text-xs text-zinc-500 hover:text-white flex items-center gap-1">Check Project <ArrowUpRight size={14} /></a>
-        </motion.div>
-
-        {/* FOOTER */}
-        <div className="md:col-span-4 flex flex-col md:flex-row justify-between items-center px-4 py-6 text-[10px] text-zinc-600 tracking-[0.3em] uppercase">
-          <p>© 2026 Elevva Marketing</p>
-          <p className="mt-2 md:mt-0">Varginha, MG — Estratégia Digital</p>
-        </div>
-
+      {/* Luz de fundo sutil */}
+      <div className="fixed inset-0 -z-10 overflow-hidden">
+        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-blue-900/10 blur-[120px] rounded-full" />
       </div>
+
+      {/* Header Centralizado */}
+      <header className="max-w-4xl mx-auto pt-24 pb-16 text-center px-6">
+        <motion.h1
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-5xl md:text-7xl font-bold tracking-tighter mb-4"
+        >
+          Meus Trabalhos
+        </motion.h1>
+        <p className="text-zinc-500 uppercase tracking-[0.5em] text-[10px] md:text-xs font-bold">
+          João Pedro Scalioni
+        </p>
+      </header>
+
+      {/* Grid de Projetos - 3 Colunas Desktop */}
+      <section className="max-w-6xl mx-auto px-6 pb-32">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((p) => (
+            <motion.div
+              key={p.id}
+              whileHover={{ y: -8 }}
+              className="bg-[#0A0A0A] border border-white/5 rounded-3xl overflow-hidden group hover:border-white/20 transition-all duration-500"
+            >
+              <div className="aspect-[16/10] overflow-hidden bg-zinc-800">
+                <img src={p.img} alt={p.title} className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" />
+              </div>
+
+              <div className="p-8 text-center">
+                <span className="text-[10px] uppercase tracking-widest text-zinc-500 font-bold mb-2 block">{p.tag}</span>
+                <h3 className="text-2xl font-bold mb-4">{p.title}</h3>
+                <p className="text-zinc-400 text-sm mb-8 leading-relaxed">{p.desc}</p>
+
+                {p.isStrategy ? (
+                  <button
+                    onClick={() => setModalData(p)}
+                    className="w-full py-4 bg-white text-black rounded-full font-bold text-sm hover:bg-zinc-200 transition-colors"
+                  >
+                    Saiba Mais
+                  </button>
+                ) : (
+                  <a
+                    href={p.link} target="_blank"
+                    className="flex items-center justify-center gap-2 w-full py-4 bg-zinc-900 border border-white/10 text-white rounded-full font-bold text-sm hover:bg-white hover:text-black transition-all"
+                  >
+                    Ver Site <ExternalLink size={16} />
+                  </a>
+                )}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Modal Saiba Mais */}
+      <AnimatePresence>
+        {modalData && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/90 backdrop-blur-sm">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              className="bg-[#0F0F0F] border border-white/10 p-8 md:p-12 rounded-[2.5rem] max-w-lg w-full relative"
+            >
+              <button onClick={() => setModalData(null)} className="absolute top-6 right-6 text-zinc-500 hover:text-white">
+                <X size={24} />
+              </button>
+              <TrendingUp size={40} className="text-blue-500 mb-6" />
+              <h2 className="text-3xl font-bold mb-4">{modalData.title}</h2>
+              <p className="text-zinc-400 leading-relaxed mb-8">
+                Atuação estratégica focada no setor de materiais de construção em Varginha.
+                Desenvolvi campanhas de tráfego pago e posicionamento regional para competir com grandes marketplaces,
+                integrando a comunicação de estoque com foco direto em conversão e vendas locais.
+              </p>
+              <a href="https://wa.me/5535997350506" className="inline-block w-full text-center py-4 bg-white text-black rounded-full font-bold">
+                Falar sobre Estratégia
+              </a>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* Footer Perfeito */}
+      <footer className="max-w-6xl mx-auto border-t border-white/5 px-6 py-12 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="text-center md:text-left">
+          <p className="text-sm font-bold text-zinc-400 uppercase tracking-widest">© 2026 João Pedro Scalioni — Elevva Marketing</p>
+          <p className="text-xs text-zinc-600 mt-1">Varginha, MG — Performance & Estratégia</p>
+        </div>
+        <div className="flex gap-6">
+          <a href="https://github.com/JoaoPedroScalioni" target="_blank" className="text-zinc-500 hover:text-white transition-colors"><Code size={20} /></a>
+          <a href="https://www.linkedin.com/in/jo%C3%A3o-pedro-scalioni-de-souza-65b1212a6/" target="_blank" className="text-zinc-500 hover:text-white transition-colors"><Globe size={20} /></a>
+          <a href="https://wa.me/5535997350506" target="_blank" className="text-zinc-500 hover:text-white transition-colors"><MessageCircle size={20} /></a>
+        </div>
+      </footer>
     </main>
   );
 }
