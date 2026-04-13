@@ -7,6 +7,8 @@ import ProjectCard from "@/components/ProjectCard";
 import ProjectModal from "@/components/ProjectModal";
 import { BarChart3 } from "lucide-react";
 
+import { Github, Linkedin, MessageCircle } from "lucide-react";
+
 export default function PortfolioPage() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
@@ -71,10 +73,36 @@ export default function PortfolioPage() {
           <p className="text-white/80 tracking-[0.2em]">© 2026 João Pedro Scalioni — Elevva Marketing</p>
           <p className="tracking-normal normal-case opacity-60">Varginha, MG — Performance & Estratégia</p>
         </div>
-        <div className="flex items-center gap-12 md:gap-16">
-          <a href="#" className="hover:text-white transition-colors duration-500">LinkedIn</a>
-          <a href="#" className="hover:text-white transition-colors duration-500">GitHub</a>
-          <a href="#" className="hover:text-white transition-colors duration-500 font-black text-white/40">WhatsApp</a>
+        
+        {/* Social Links Row */}
+        <div className="flex items-center gap-8">
+          <a 
+            href="https://github.com/JoaoPedroScalioni" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-white hover:scale-110 transition-all duration-300"
+            aria-label="GitHub"
+          >
+            <Github size={20} />
+          </a>
+          <a 
+            href="https://www.linkedin.com/in/jo%C3%A3o-pedro-scalioni-de-souza-65b1212a6/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-white hover:scale-110 transition-all duration-300"
+            aria-label="LinkedIn"
+          >
+            <Linkedin size={20} />
+          </a>
+          <a 
+            href="https://wa.me/5535997350506" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-white hover:scale-110 transition-all duration-300"
+            aria-label="WhatsApp"
+          >
+            <MessageCircle size={20} />
+          </a>
         </div>
       </footer>
     </main>
