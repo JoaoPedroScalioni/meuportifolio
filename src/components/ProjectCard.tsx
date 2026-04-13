@@ -37,12 +37,12 @@ export default function ProjectCard({ project, onSelect }: ProjectCardProps) {
       </div>
 
       {/* Content Area - Centralized */}
-      <div className="p-10 flex flex-col items-center justify-between flex-1 gap-8">
+      <div className="p-8 md:p-10 flex flex-col items-center justify-between flex-1 gap-8">
         <div className="space-y-4">
-          <h3 className="text-2xl font-bold tracking-tight text-white/90 leading-tight">
+          <h3 className="text-xl md:text-2xl font-bold tracking-tight text-white/90 leading-tight px-2">
             {project.title}
           </h3>
-          <p className="text-sm text-gray-500 font-light leading-relaxed group-hover:text-gray-400 transition-colors">
+          <p className="text-sm text-gray-500 font-light leading-relaxed group-hover:text-gray-400 transition-colors px-2">
             {project.description}
           </p>
         </div>
@@ -53,7 +53,7 @@ export default function ProjectCard({ project, onSelect }: ProjectCardProps) {
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 w-full px-8 py-4 rounded-full bg-white text-black font-extrabold text-[10px] uppercase tracking-widest hover:bg-gray-100 active:scale-[0.98] transition-all duration-300 shadow-xl"
+              className="flex items-center justify-center gap-2 w-full h-[48px] px-8 rounded-full bg-white text-black font-extrabold text-[10px] uppercase tracking-widest hover:bg-gray-100 active:scale-[0.98] transition-all duration-300 shadow-xl"
             >
               <span>Ver Site</span>
               <ExternalLink size={14} className="opacity-50" />
@@ -61,7 +61,7 @@ export default function ProjectCard({ project, onSelect }: ProjectCardProps) {
           ) : (
             <button
               onClick={() => onSelect(project)}
-              className="flex items-center justify-center gap-2 w-full px-8 py-4 rounded-full bg-white/[0.05] border border-white/[0.08] text-white/60 font-bold text-[10px] uppercase tracking-widest hover:bg-white/[0.1] hover:text-white transition-all duration-300 active:scale-[0.98]"
+              className="flex items-center justify-center gap-2 w-full h-[48px] px-8 rounded-full bg-white/[0.05] border border-white/[0.08] text-white/60 font-bold text-[10px] uppercase tracking-widest hover:bg-white/[0.1] hover:text-white transition-all duration-300 active:scale-[0.98]"
             >
               <span>Saiba Mais</span>
               <Info size={14} className="opacity-50" />

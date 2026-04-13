@@ -20,7 +20,7 @@ export default function PortfolioPage() {
       </div>
 
       {/* Header Section (Total Focus & Compact) */}
-      <header className="relative w-full max-w-6xl px-6 pt-16 pb-12 md:pt-28 md:pb-20 flex flex-col items-center text-center gap-6">
+      <header className="relative w-full max-w-6xl px-6 pt-16 pb-12 md:pt-32 md:pb-24 flex flex-col items-center text-center gap-6">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -28,15 +28,15 @@ export default function PortfolioPage() {
           className="space-y-4"
         >
           <div className="flex flex-col gap-3">
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white">
+            <h1 className="text-4xl md:text-7xl font-bold tracking-tight text-white leading-[1.1]">
               Meus Trabalhos
             </h1>
-            <p className="text-xs md:text-sm font-bold tracking-[0.5em] uppercase text-white/30">
+            <p className="text-[10px] md:text-sm font-bold tracking-[0.5em] uppercase text-white/30">
               João Pedro Scalioni
             </p>
           </div>
           
-          <p className="max-w-xl text-base md:text-lg text-gray-500 font-light leading-relaxed mx-auto">
+          <p className="max-w-xl text-base md:text-lg text-gray-500 font-light leading-relaxed mx-auto px-4">
             Desenvolvedor Web e Estrategista de Performance. <br className="hidden md:block" />
             Interfaces de alto impacto fundamentadas em conversão.
           </p>
@@ -44,11 +44,11 @@ export default function PortfolioPage() {
       </header>
 
       {/* Grid Showcase Section */}
-      <section id="work" className="relative w-full max-w-6xl px-6 pb-60">
+      <section id="work" className="relative w-full max-w-6xl px-6 pb-40">
         <div className="w-full h-[1px] bg-white/[0.05] mb-20" />
 
-        {/* 3 Column Grid (Desktop) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        {/* Adaptive Grid (1 Mobile -> 2 Tablet -> 3 Desktop) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
           {projects.map((project) => (
             <ProjectCard 
               key={project.id} 
@@ -59,22 +59,22 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      {/* Modal - Renderized at Page Level for Portal Effect */}
+      {/* Modal - Renderized at Page Level */}
       <ProjectModal 
         project={selectedProject} 
         onClose={() => setSelectedProject(null)} 
       />
 
       {/* Footer */}
-      <footer className="relative w-full max-w-6xl px-6 py-20 border-t border-white/[0.05] flex flex-col md:flex-row items-center justify-between gap-12 text-[10px] font-bold tracking-[0.5em] uppercase text-white/10">
+      <footer className="relative w-full max-w-6xl px-6 py-16 md:py-24 border-t border-white/10 flex flex-col md:flex-row items-center justify-center md:items-start md:justify-between gap-12 text-[10px] font-bold tracking-[0.4em] uppercase text-gray-400">
         <div className="flex flex-col items-center md:items-start gap-3 text-center md:text-left">
-          <p>© 2026 João Pedro Scalioni — Elevva Marketing</p>
-          <p className="tracking-normal normal-case opacity-50">Varginha, MG — Performance & Estratgia</p>
+          <p className="text-white/80 tracking-[0.2em]">© 2026 João Pedro Scalioni — Elevva Marketing</p>
+          <p className="tracking-normal normal-case opacity-60">Varginha, MG — Performance & Estratégia</p>
         </div>
-        <div className="flex items-center gap-16">
+        <div className="flex items-center gap-12 md:gap-16">
           <a href="#" className="hover:text-white transition-colors duration-500">LinkedIn</a>
           <a href="#" className="hover:text-white transition-colors duration-500">GitHub</a>
-          <a href="#" className="hover:text-white transition-colors duration-500 font-black text-white/20">WhatsApp</a>
+          <a href="#" className="hover:text-white transition-colors duration-500 font-black text-white/40">WhatsApp</a>
         </div>
       </footer>
     </main>
