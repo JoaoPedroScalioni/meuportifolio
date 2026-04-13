@@ -13,20 +13,49 @@
 
 body {
   background-color: var(--background);
+  background-image: 
+    radial-gradient(circle at 80% 20%, rgba(100, 50, 255, 0.08), transparent 45%),
+    radial-gradient(circle at 20% 80%, rgba(50, 100, 255, 0.05), transparent 45%);
+  background-attachment: fixed;
   color: var(--foreground);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
 }
 
 @layer base {
   * {
-    @apply border-white/10;
+    @apply border-white/5;
   }
 }
 
-/* Custom horizontal scrolling guard */
-html, body {
-  overflow-x: hidden;
+/* Glassmorphism token */
+.glass {
+  @apply bg-white/[0.03] backdrop-blur-2xl border border-white/10 shadow-2xl;
+}
+
+/* Premium Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Selection */
+::selection {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #000;
+}
+
+html {
   scroll-behavior: smooth;
 }
